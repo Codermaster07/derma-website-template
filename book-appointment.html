@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book an Appointment | Aurelia Dermatology &amp; Skin Clinic</title>
+  <meta name="description" content="Book your private consultation or specialized treatment with our board-certified dermatologists at Aurelia Skin Clinic. Fast, secure online booking.">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .booking-wrapper {
+      max-width: 960px;
+      margin: 0 auto;
+      background: var(--color-bg-card);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-xl);
+      box-shadow: var(--shadow-lg);
+    }
+    .booking-steps {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: var(--spacing-xl);
+      position: relative;
+    }
+    .booking-steps::before {
+      content: '';
+      position: absolute;
+      top: 18px;
+      left: 30px;
+      right: 30px;
+      height: 2px;
+      background: var(--color-border);
+      z-index: 1;
+    }
+    .booking-step {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+    }
+    .booking-step__num {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--color-bg);
+      border: 2px solid var(--color-border);
+      color: var(--color-text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: var(--text-sm);
+      transition: all 0.3s ease;
+    }
+    .booking-step.active .booking-step__num {
+      background: var(--color-accent);
+      border-color: var(--color-accent);
+      color: #fff;
+    }
+    .booking-step.completed .booking-step__num {
+      background: var(--color-primary);
+      border-color: var(--color-primary);
+      color: #fff;
+    }
+    .booking-step__label {
+      font-size: var(--text-xs);
+      font-weight: 500;
+      color: var(--color-text-muted);
+    }
+    .booking-step.active .booking-step__label {
+      color: var(--color-primary);
+      font-weight: 600;
+    }
+    .booking-section-panel {
+      display: none;
+    }
+    .booking-section-panel.active {
+      display: block;
+      animation: fadeIn 0.4s ease;
+    }
+    .option-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: var(--spacing-md);
+      margin-bottom: var(--spacing-lg);
+    }
+    .option-card {
+      border: 1.5px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--spacing-md);
+      cursor: pointer;
+      transition: all 0.25s ease;
+      background: var(--color-bg);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .option-card:hover {
+      border-color: var(--color-accent-light);
+      transform: translateY(-2px);
+    }
+    .option-card.selected {
+      border-color: var(--color-accent);
+      background: rgba(184, 148, 95, 0.06);
+      box-shadow: 0 0 0 2px var(--color-accent);
+    }
+    .option-card__title {
+      font-weight: 600;
+      color: var(--color-primary);
+      margin-bottom: 4px;
+    }
+    .option-card__meta {
+      font-size: var(--text-xs);
+      color: var(--color-text-muted);
+      margin-bottom: 8px;
+    }
+    .option-card__price {
+      font-weight: 700;
+      color: var(--color-accent);
+      font-size: var(--text-base);
+    }
+    .time-slot-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      gap: var(--spacing-xs);
+      margin-top: var(--spacing-sm);
+    }
+    .time-slot {
+      padding: 10px 12px;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      text-align: center;
+      font-size: var(--text-sm);
+      cursor: pointer;
+      background: var(--color-bg);
+      transition: all 0.2s ease;
+    }
+    .time-slot:hover {
+      border-color: var(--color-accent);
+    }
+    .time-slot.selected {
+      background: var(--color-primary);
+      color: #fff;
+      border-color: var(--color-primary);
+    }
+    .booking-summary {
+      background: var(--color-bg-alt);
+      border-radius: var(--radius-md);
+      padding: var(--spacing-lg);
+      margin-bottom: var(--spacing-lg);
+    }
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--color-border-light);
+      font-size: var(--text-sm);
+    }
+    .summary-row:last-child {
+      border-bottom: none;
+      font-weight: 700;
+      font-size: var(--text-base);
+      color: var(--color-primary);
+      margin-top: 6px;
+    }
+    .confirmation-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: var(--spacing-md);
+    }
+    .confirmation-modal.show {
+      display: flex;
+    }
+    .modal-box {
+      background: #fff;
+      max-width: 540px;
+      width: 100%;
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-xl);
+      text-align: center;
+      animation: modalSlide 0.35s ease;
+    }
+    @keyframes modalSlide {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Announcement Bar -->
+  <div class="announcement-bar">
+    <div class="container">
+      <div class="announcement-bar__left">
+        <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg> 123 Wellness Avenue, Suite 200</span>
+        <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg> (555) 123-4567</span>
+      </div>
+      <div class="announcement-bar__center">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg> Instant Booking Confirmation &bull; Flexible Rescheduling
+      </div>
+      <div class="announcement-bar__right">
+        <a href="#" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+        <a href="#" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="container">
+      <a href="index.html" class="header__logo" aria-label="Aurelia Home">
+        <div class="header__logo-icon">
+          <svg width="32" height="32" viewBox="0 0 40 40" fill="none">
+            <circle cx="20" cy="20" r="18" stroke="#B8945F" stroke-width="1.5"/>
+            <path d="M20 8C14 14 14 26 20 32C26 26 26 14 20 8Z" fill="#B8945F" opacity="0.15" stroke="#B8945F" stroke-width="1"/>
+            <circle cx="20" cy="20" r="4" fill="#B8945F" opacity="0.3"/>
+          </svg>
+        </div>
+        <div>AURELIA<small>Dermatology &amp; Skin Clinic</small></div>
+      </a>
+      <nav class="header__nav" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="treatments.html">Treatments</a>
+        <a href="concerns.html">Concerns</a>
+        <a href="doctors.html">Doctors</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="blog.html">Blog</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="header__actions">
+        <a href="book-appointment.html" class="btn btn-primary btn-sm">Book Appointment</a>
+        <button class="menu-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+  <div class="mobile-nav" id="mobile-nav">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="treatments.html">Treatments</a>
+    <a href="concerns.html">Concerns</a>
+    <a href="doctors.html">Doctors</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="blog.html">Blog</a>
+    <a href="contact.html">Contact</a>
+    <a href="book-appointment.html" class="btn btn-primary">Book Appointment</a>
+  </div>
+
+  <main>
+    <!-- Page Header -->
+    <section class="page-header">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><span>Book Appointment</span></nav>
+        <span class="eyebrow">Online Reservation</span>
+        <h1>Schedule Your<br><span class="italic">Consultation.</span></h1>
+        <p>Choose your treatment, select your preferred dermatologist, and book your visit in 3 easy steps.</p>
+      </div>
+    </section>
+
+    <!-- Booking Interactive Section -->
+    <section class="section" style="padding-top:0;">
+      <div class="container">
+        <div class="booking-wrapper">
+          
+          <!-- Stepper -->
+          <div class="booking-steps">
+            <div class="booking-step active" data-step="1" id="step-indicator-1">
+              <div class="booking-step__num">1</div>
+              <div class="booking-step__label">Service &amp; Doctor</div>
+            </div>
+            <div class="booking-step" data-step="2" id="step-indicator-2">
+              <div class="booking-step__num">2</div>
+              <div class="booking-step__label">Date &amp; Time</div>
+            </div>
+            <div class="booking-step" data-step="3" id="step-indicator-3">
+              <div class="booking-step__num">3</div>
+              <div class="booking-step__label">Patient Details</div>
+            </div>
+          </div>
+
+          <!-- Step 1: Service & Doctor -->
+          <div class="booking-section-panel active" id="panel-step-1">
+            <h3 style="margin-bottom:var(--spacing-xs);">Select Service</h3>
+            <p style="color:var(--color-text-muted);font-size:var(--text-sm);margin-bottom:var(--spacing-md);">Choose the primary focus of your appointment:</p>
+            <div class="option-grid" id="service-options">
+              <div class="option-card selected" data-service="Initial Dermatologist Consultation" data-price="120">
+                <div>
+                  <div class="option-card__title">Initial Consultation &amp; Scan</div>
+                  <div class="option-card__meta">45 min &bull; Full Skin Assessment</div>
+                </div>
+                <div class="option-card__price">$120</div>
+              </div>
+              <div class="option-card" data-service="HydraFacial Deluxe" data-price="220">
+                <div>
+                  <div class="option-card__title">HydraFacial Deluxe</div>
+                  <div class="option-card__meta">50 min &bull; Deep Cleanse &amp; Infusion</div>
+                </div>
+                <div class="option-card__price">$220</div>
+              </div>
+              <div class="option-card" data-service="Laser Skin Resurfacing" data-price="450">
+                <div>
+                  <div class="option-card__title">Laser Skin Resurfacing</div>
+                  <div class="option-card__meta">60 min &bull; Scars &amp; Tone Correction</div>
+                </div>
+                <div class="option-card__price">$450</div>
+              </div>
+              <div class="option-card" data-service="Chemical Peel &amp; Brightening" data-price="190">
+                <div>
+                  <div class="option-card__title">Medical Chemical Peel</div>
+                  <div class="option-card__meta">40 min &bull; Pigment &amp; Acne Renewal</div>
+                </div>
+                <div class="option-card__price">$190</div>
+              </div>
+            </div>
+
+            <h3 style="margin-bottom:var(--spacing-xs);margin-top:var(--spacing-lg);">Select Doctor</h3>
+            <p style="color:var(--color-text-muted);font-size:var(--text-sm);margin-bottom:var(--spacing-md);">Choose your preferred specialist or any available doctor:</p>
+            <div class="option-grid" id="doctor-options">
+              <div class="option-card selected" data-doctor="Dr. Sophia Laurent, MD">
+                <div class="option-card__title">Dr. Sophia Laurent, MD</div>
+                <div class="option-card__meta">Chief Dermatologist &bull; Acne &amp; Pigmentation</div>
+              </div>
+              <div class="option-card" data-doctor="Dr. Marcus Vance, MD">
+                <div class="option-card__title">Dr. Marcus Vance, MD</div>
+                <div class="option-card__meta">Laser &amp; Energy Device Specialist</div>
+              </div>
+              <div class="option-card" data-doctor="Dr. Elena Rostova, MD">
+                <div class="option-card__title">Dr. Elena Rostova, MD</div>
+                <div class="option-card__meta">Clinical Dermatology &amp; Trichology</div>
+              </div>
+              <div class="option-card" data-doctor="First Available Specialist">
+                <div class="option-card__title">First Available Specialist</div>
+                <div class="option-card__meta">Earliest Available Appointment</div>
+              </div>
+            </div>
+
+            <div style="display:flex;justify-content:flex-end;margin-top:var(--spacing-lg);">
+              <button type="button" class="btn btn-primary" id="btn-to-step-2">Continue to Date &amp; Time &rarr;</button>
+            </div>
+          </div>
+
+          <!-- Step 2: Date & Time -->
+          <div class="booking-section-panel" id="panel-step-2">
+            <h3 style="margin-bottom:var(--spacing-xs);">Select Date</h3>
+            <p style="color:var(--color-text-muted);font-size:var(--text-sm);margin-bottom:var(--spacing-md);">Select an upcoming date for your visit:</p>
+            
+            <div style="max-width:320px;margin-bottom:var(--spacing-lg);">
+              <input type="date" id="booking-date" class="form-control" style="padding:12px 16px;border:1px solid var(--color-border);border-radius:var(--radius-sm);width:100%;">
+            </div>
+
+            <h3 style="margin-bottom:var(--spacing-xs);">Select Time Slot</h3>
+            <p style="color:var(--color-text-muted);font-size:var(--text-sm);margin-bottom:var(--spacing-md);">Morning &amp; afternoon clinic hours available:</p>
+            
+            <div class="time-slot-grid" id="time-slots">
+              <div class="time-slot selected">09:30 AM</div>
+              <div class="time-slot">10:15 AM</div>
+              <div class="time-slot">11:00 AM</div>
+              <div class="time-slot">11:45 AM</div>
+              <div class="time-slot">02:00 PM</div>
+              <div class="time-slot">02:45 PM</div>
+              <div class="time-slot">03:30 PM</div>
+              <div class="time-slot">04:15 PM</div>
+              <div class="time-slot">05:00 PM</div>
+            </div>
+
+            <div style="display:flex;justify-content:space-between;margin-top:var(--spacing-xl);">
+              <button type="button" class="btn btn-outline" id="btn-back-to-1">&larr; Back</button>
+              <button type="button" class="btn btn-primary" id="btn-to-step-3">Continue to Details &rarr;</button>
+            </div>
+          </div>
+
+          <!-- Step 3: Patient Information -->
+          <div class="booking-section-panel" id="panel-step-3">
+            <h3 style="margin-bottom:var(--spacing-xs);">Your Information</h3>
+            <p style="color:var(--color-text-muted);font-size:var(--text-sm);margin-bottom:var(--spacing-md);">Please provide your contact details for confirmation and reminder notifications:</p>
+
+            <form id="booking-form" onsubmit="event.preventDefault(); submitBooking();">
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--spacing-md);margin-bottom:var(--spacing-md);">
+                <div>
+                  <label style="display:block;font-size:var(--text-sm);font-weight:500;margin-bottom:4px;">First Name *</label>
+                  <input type="text" id="cust-first-name" required placeholder="Jane" style="width:100%;padding:10px 14px;border:1px solid var(--color-border);border-radius:var(--radius-sm);">
+                </div>
+                <div>
+                  <label style="display:block;font-size:var(--text-sm);font-weight:500;margin-bottom:4px;">Last Name *</label>
+                  <input type="text" id="cust-last-name" required placeholder="Doe" style="width:100%;padding:10px 14px;border:1px solid var(--color-border);border-radius:var(--radius-sm);">
+                </div>
+              </div>
+
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--spacing-md);margin-bottom:var(--spacing-md);">
+                <div>
+                  <label style="display:block;font-size:var(--text-sm);font-weight:500;margin-bottom:4px;">Email Address *</label>
+                  <input type="email" id="cust-email" required placeholder="jane.doe@example.com" style="width:100%;padding:10px 14px;border:1px solid var(--color-border);border-radius:var(--radius-sm);">
+                </div>
+                <div>
+                  <label style="display:block;font-size:var(--text-sm);font-weight:500;margin-bottom:4px;">Phone Number *</label>
+                  <input type="tel" id="cust-phone" required placeholder="(555) 000-0000" style="width:100%;padding:10px 14px;border:1px solid var(--color-border);border-radius:var(--radius-sm);">
+                </div>
+              </div>
+
+              <div style="margin-bottom:var(--spacing-lg);">
+                <label style="display:block;font-size:var(--text-sm);font-weight:500;margin-bottom:4px;">Primary Skin Concern / Notes for Doctor</label>
+                <textarea id="cust-notes" rows="3" placeholder="Briefly describe your skin goals, past treatments, or any active conditions..." style="width:100%;padding:10px 14px;border:1px solid var(--color-border);border-radius:var(--radius-sm);"></textarea>
+              </div>
+
+              <!-- Summary Card -->
+              <div class="booking-summary">
+                <h4 style="margin-bottom:var(--spacing-sm);">Appointment Summary</h4>
+                <div class="summary-row">
+                  <span>Selected Service:</span>
+                  <span id="sum-service">Initial Dermatologist Consultation</span>
+                </div>
+                <div class="summary-row">
+                  <span>Doctor:</span>
+                  <span id="sum-doctor">Dr. Sophia Laurent, MD</span>
+                </div>
+                <div class="summary-row">
+                  <span>Date &amp; Time:</span>
+                  <span id="sum-datetime">Select in step 2</span>
+                </div>
+                <div class="summary-row">
+                  <span>Estimated Total:</span>
+                  <span id="sum-price">$120</span>
+                </div>
+              </div>
+
+              <div style="display:flex;justify-content:space-between;">
+                <button type="button" class="btn btn-outline" id="btn-back-to-2">&larr; Back</button>
+                <button type="submit" class="btn btn-primary btn-lg">Confirm &amp; Book Appointment</button>
+              </div>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Confirmation Modal -->
+    <div class="confirmation-modal" id="confirmModal">
+      <div class="modal-box">
+        <div style="width:64px;height:64px;background:rgba(184, 148, 95, 0.15);color:var(--color-accent);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto var(--spacing-md);">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h2 style="margin-bottom:var(--spacing-xs);">Appointment Confirmed!</h2>
+        <p style="color:var(--color-text-secondary);margin-bottom:var(--spacing-md);">Thank you, <strong id="modal-patient-name">Patient</strong>. Your consultation has been scheduled with Aurelia Dermatology.</p>
+        
+        <div style="background:var(--color-bg-alt);padding:var(--spacing-md);border-radius:var(--radius-md);text-align:left;font-size:var(--text-sm);margin-bottom:var(--spacing-lg);">
+          <div><strong>Confirmation ID:</strong> #AUR-9842</div>
+          <div id="modal-details" style="margin-top:6px;"></div>
+        </div>
+
+        <p style="font-size:var(--text-xs);color:var(--color-text-muted);margin-bottom:var(--spacing-lg);">A confirmation email and SMS reminder with preparation instructions have been dispatched.</p>
+
+        <a href="index.html" class="btn btn-primary" style="width:100%;">Return to Home</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a href="index.html" class="header__logo">
+            <div class="header__logo-icon">
+              <svg width="32" height="32" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="#B8945F" stroke-width="1.5"/><path d="M20 8C14 14 14 26 20 32C26 26 26 14 20 8Z" fill="#B8945F" opacity="0.15" stroke="#B8945F" stroke-width="1"/><circle cx="20" cy="20" r="4" fill="#B8945F" opacity="0.3"/></svg>
+            </div>
+            <div>AURELIA<small>Dermatology &amp; Skin Clinic</small></div>
+          </a>
+          <p>Advanced dermatology and aesthetic care. Personalized treatments for healthier, beautiful skin.</p>
+        </div>
+        <div class="footer__col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="treatments.html">Treatments</a></li>
+            <li><a href="doctors.html">Doctors</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Treatments</h4>
+          <ul>
+            <li><a href="treatment-detail.html">Acne Treatment</a></li>
+            <li><a href="treatment-detail.html">Pigmentation</a></li>
+            <li><a href="treatment-detail.html">Laser Treatment</a></li>
+            <li><a href="treatment-detail.html">HydraFacial</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Contact</h4>
+          <ul>
+            <li>123 Wellness Avenue, Suite 200</li>
+            <li><a href="tel:+15551234567">(555) 123-4567</a></li>
+            <li><a href="mailto:hello@aureliaclinic.com">hello@aureliaclinic.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; 2026 Aurelia Dermatology &amp; Skin Clinic. All Rights Reserved.</p>
+        <div class="footer__bottom-links">
+          <a href="privacy-policy.html">Privacy Policy</a>
+          <a href="terms.html">Terms</a>
+          <a href="medical-disclaimer.html">Medical Disclaimer</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    // Booking Stepper Logic
+    let selectedService = "Initial Dermatologist Consultation";
+    let selectedPrice = "$120";
+    let selectedDoctor = "Dr. Sophia Laurent, MD";
+    let selectedTime = "09:30 AM";
+    let selectedDate = "";
+
+    // Set default date to tomorrow
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    const dateInput = document.getElementById('booking-date');
+    if (dateInput) {
+      dateInput.value = tomorrow.toISOString().split('T')[0];
+      dateInput.min = tomorrow.toISOString().split('T')[0];
+      selectedDate = dateInput.value;
+    }
+
+    // Check URL parameters for doctor pre-selection
+    const urlParams = new URLSearchParams(window.location.search);
+    const docParam = urlParams.get('doctor');
+    if (docParam) {
+      document.querySelectorAll('#doctor-options .option-card').forEach(card => {
+        card.classList.remove('selected');
+        if (docParam === 'laurent' && card.dataset.doctor.includes('Laurent')) {
+          card.classList.add('selected');
+          selectedDoctor = card.dataset.doctor;
+        } else if (docParam === 'vance' && card.dataset.doctor.includes('Vance')) {
+          card.classList.add('selected');
+          selectedDoctor = card.dataset.doctor;
+        } else if (docParam === 'rostova' && card.dataset.doctor.includes('Rostova')) {
+          card.classList.add('selected');
+          selectedDoctor = card.dataset.doctor;
+        }
+      });
+    }
+
+    // Service Option Clicks
+    document.querySelectorAll('#service-options .option-card').forEach(card => {
+      card.addEventListener('click', () => {
+        document.querySelectorAll('#service-options .option-card').forEach(c => c.classList.remove('selected'));
+        card.classList.add('selected');
+        selectedService = card.dataset.service;
+        selectedPrice = '$' + card.dataset.price;
+        updateSummary();
+      });
+    });
+
+    // Doctor Option Clicks
+    document.querySelectorAll('#doctor-options .option-card').forEach(card => {
+      card.addEventListener('click', () => {
+        document.querySelectorAll('#doctor-options .option-card').forEach(c => c.classList.remove('selected'));
+        card.classList.add('selected');
+        selectedDoctor = card.dataset.doctor;
+        updateSummary();
+      });
+    });
+
+    // Time Slots
+    document.querySelectorAll('#time-slots .time-slot').forEach(slot => {
+      slot.addEventListener('click', () => {
+        document.querySelectorAll('#time-slots .time-slot').forEach(s => s.classList.remove('selected'));
+        slot.classList.add('selected');
+        selectedTime = slot.textContent.trim();
+        updateSummary();
+      });
+    });
+
+    // Date change
+    if (dateInput) {
+      dateInput.addEventListener('change', () => {
+        selectedDate = dateInput.value;
+        updateSummary();
+      });
+    }
+
+    function updateSummary() {
+      document.getElementById('sum-service').textContent = selectedService;
+      document.getElementById('sum-doctor').textContent = selectedDoctor;
+      document.getElementById('sum-price').textContent = selectedPrice;
+      document.getElementById('sum-datetime').textContent = (selectedDate ? selectedDate + ' at ' : '') + selectedTime;
+    }
+
+    // Navigation between steps
+    function goToStep(step) {
+      document.querySelectorAll('.booking-section-panel').forEach(p => p.classList.remove('active'));
+      document.getElementById('panel-step-' + step).classList.add('active');
+
+      document.querySelectorAll('.booking-step').forEach((s, idx) => {
+        s.classList.remove('active');
+        if (idx + 1 < step) {
+          s.classList.add('completed');
+        } else if (idx + 1 === step) {
+          s.classList.add('active');
+          s.classList.remove('completed');
+        } else {
+          s.classList.remove('completed');
+        }
+      });
+      window.scrollTo({ top: 300, behavior: 'smooth' });
+    }
+
+    document.getElementById('btn-to-step-2').addEventListener('click', () => goToStep(2));
+    document.getElementById('btn-to-step-3').addEventListener('click', () => {
+      updateSummary();
+      goToStep(3);
+    });
+    document.getElementById('btn-back-to-1').addEventListener('click', () => goToStep(1));
+    document.getElementById('btn-back-to-2').addEventListener('click', () => goToStep(2));
+
+    function submitBooking() {
+      const firstName = document.getElementById('cust-first-name').value;
+      const lastName = document.getElementById('cust-last-name').value;
+      document.getElementById('modal-patient-name').textContent = `${firstName} ${lastName}`;
+      document.getElementById('modal-details').innerHTML = `
+        <div><strong>Service:</strong> ${selectedService}</div>
+        <div><strong>Specialist:</strong> ${selectedDoctor}</div>
+        <div><strong>Date & Time:</strong> ${selectedDate} at ${selectedTime}</div>
+        <div><strong>Total:</strong> ${selectedPrice} (payable at clinic)</div>
+      `;
+      document.getElementById('confirmModal').classList.add('show');
+    }
+
+    updateSummary();
+  </script>
+</body>
+</html>

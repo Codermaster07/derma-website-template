@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us | Aurelia Dermatology &amp; Skin Clinic</title>
+  <meta name="description" content="Get in touch with Aurelia Dermatology &amp; Skin Clinic. Find our location, opening hours, parking instructions, and contact details.">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: var(--spacing-xl);
+      align-items: start;
+    }
+    @media (max-width: 991px) {
+      .contact-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+    .info-card {
+      background: var(--color-bg-card);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--spacing-lg);
+      margin-bottom: var(--spacing-md);
+    }
+    .info-card__title {
+      font-size: var(--text-lg);
+      font-weight: 600;
+      color: var(--color-primary);
+      margin-bottom: var(--spacing-sm);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .info-card__title svg {
+      color: var(--color-accent);
+    }
+    .map-box {
+      width: 100%;
+      height: 280px;
+      background: linear-gradient(135deg, #1C2321, #2C3531);
+      border-radius: var(--radius-md);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      text-align: center;
+      padding: var(--spacing-lg);
+      margin-top: var(--spacing-md);
+      border: 1px solid rgba(184, 148, 95, 0.3);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Announcement Bar -->
+  <div class="announcement-bar">
+    <div class="container">
+      <div class="announcement-bar__left">
+        <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg> 123 Wellness Avenue, Suite 200</span>
+        <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg> (555) 123-4567</span>
+      </div>
+      <div class="announcement-bar__center">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg> Free On-Site Valet Parking &bull; Wheelchair Accessible
+      </div>
+      <div class="announcement-bar__right">
+        <a href="#" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+        <a href="#" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="container">
+      <a href="index.html" class="header__logo" aria-label="Aurelia Home">
+        <div class="header__logo-icon">
+          <svg width="32" height="32" viewBox="0 0 40 40" fill="none">
+            <circle cx="20" cy="20" r="18" stroke="#B8945F" stroke-width="1.5"/>
+            <path d="M20 8C14 14 14 26 20 32C26 26 26 14 20 8Z" fill="#B8945F" opacity="0.15" stroke="#B8945F" stroke-width="1"/>
+            <circle cx="20" cy="20" r="4" fill="#B8945F" opacity="0.3"/>
+          </svg>
+        </div>
+        <div>AURELIA<small>Dermatology &amp; Skin Clinic</small></div>
+      </a>
+      <nav class="header__nav" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="treatments.html">Treatments</a>
+        <a href="concerns.html">Concerns</a>
+        <a href="doctors.html">Doctors</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="blog.html">Blog</a>
+        <a href="contact.html" class="active">Contact</a>
+      </nav>
+      <div class="header__actions">
+        <a href="book-appointment.html" class="btn btn-primary btn-sm">Book Appointment</a>
+        <button class="menu-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+  <div class="mobile-nav" id="mobile-nav">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="treatments.html">Treatments</a>
+    <a href="concerns.html">Concerns</a>
+    <a href="doctors.html">Doctors</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="blog.html">Blog</a>
+    <a href="contact.html">Contact</a>
+    <a href="book-appointment.html" class="btn btn-primary">Book Appointment</a>
+  </div>
+
+  <main>
+    <!-- Page Header -->
+    <section class="page-header">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><span>Contact</span></nav>
+        <span class="eyebrow">Get in Touch</span>
+        <h1>We're Here to<br><span class="italic">Help You Glow.</span></h1>
+        <p>Have a question or looking to schedule a consultation? Reach out to our front desk team today.</p>
+      </div>
+    </section>
+
+    <!-- Contact & Form Section -->
+    <section class="section">
+      <div class="container">
+        <div class="contact-layout">
+          
+          <!-- Contact Info Column -->
+          <div>
+            <div class="info-card">
+              <div class="info-card__title">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Clinic Location
+              </div>
+              <p style="margin-bottom:8px;font-weight:500;">Aurelia Dermatology &amp; Skin Clinic</p>
+              <p style="color:var(--color-text-secondary);font-size:var(--text-sm);margin-bottom:12px;">123 Wellness Avenue, Medical Arts Building, Suite 200, Metro City, NY 10001</p>
+              <p style="font-size:var(--text-xs);color:var(--color-text-muted);">Complimentary valet parking available at front entry. Fully ADA compliant and wheelchair accessible.</p>
+            </div>
+
+            <div class="info-card">
+              <div class="info-card__title">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                Clinic Hours
+              </div>
+              <div style="display:flex;flex-direction:column;gap:6px;font-size:var(--text-sm);color:var(--color-text-secondary);">
+                <div style="display:flex;justify-content:space-between;"><span>Monday – Friday:</span><strong>9:00 AM – 7:00 PM</strong></div>
+                <div style="display:flex;justify-content:space-between;"><span>Saturday:</span><strong>9:00 AM – 5:00 PM</strong></div>
+                <div style="display:flex;justify-content:space-between;"><span>Sunday:</span><strong>Closed (Emergency Line Only)</strong></div>
+              </div>
+            </div>
+
+            <div class="info-card">
+              <div class="info-card__title">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+                Direct Channels
+              </div>
+              <div style="display:flex;flex-direction:column;gap:8px;font-size:var(--text-sm);">
+                <div><strong>Phone:</strong> <a href="tel:+15551234567" style="color:var(--color-accent);">(555) 123-4567</a></div>
+                <div><strong>WhatsApp / SMS:</strong> <a href="#" style="color:var(--color-accent);">+1 (555) 987-6543</a></div>
+                <div><strong>General Inquiries:</strong> <a href="mailto:hello@aureliaclinic.com" style="color:var(--color-accent);">hello@aureliaclinic.com</a></div>
+                <div><strong>Appointments:</strong> <a href="mailto:appointments@aureliaclinic.com" style="color:var(--color-accent);">appointments@aureliaclinic.com</a></div>
+              </div>
+            </div>
+
+            <!-- Map Mockup -->
+            <div class="map-box">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#B8945F" stroke-width="2" style="margin-bottom:8px;"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
+              <strong style="color:var(--color-accent-light);">Interactive Clinic Location</strong>
+              <p style="font-size:var(--text-xs);color:rgba(255,255,255,0.7);margin-top:4px;">123 Wellness Avenue, Suite 200, Metro City</p>
+              <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="margin-top:12px;color:#fff;border-color:rgba(255,255,255,0.4);">Open in Google Maps &rarr;</a>
+            </div>
+          </div>
+
+          <!-- Contact Form Column -->
+          <div style="background:var(--color-bg-card);border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:var(--spacing-xl);box-shadow:var(--shadow-md);">
+            <h2 style="font-size:var(--text-2xl);margin-bottom:var(--spacing-xs);">Send Us a Message</h2>
+            <p style="color:var(--color-text-muted);font-size:var(--text-sm);margin-bottom:var(--spacing-lg);">Our patient coordination team responds to all inquiries within 2–4 business hours.</p>
+
+            <form id="contact-form" onsubmit="event.preventDefault(); document.getElementById('contact-success').style.display='block'; this.reset();">
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--spacing-md);margin-bottom:var(--spacing-md);">
+                <div>
+                  <label style="display:block;font-size:var(--text-sm);font-weight:500;margin-bottom:4px;">Full Name *</label>
+                  <input type="text" required placeholder="Jane Doe" style="width:100%;padding:10px 14px;border:1px solid var(--color-border);border-radius:var(--radius-sm);">
+                </div>
+                <div>
+                  <label style="display:block;font-size:var(--text-sm);font-weight:500;margin-bottom:4px;">Phone Number *</label>
+                  <input type="tel" required placeholder="(555) 123-4567" style="width:100%;padding:10px 14px;border:1px solid var(--color-border);border-radius:var(--radius-sm);">
+                </div>
+              </div>
+
+              <div style="margin-bottom:var(--spacing-md);">
+                <label style="display:block;font-size:var(--text-sm);font-weight:500;margin-bottom:4px;">Email Address *</label>
+                <input type="email" required placeholder="jane.doe@example.com" style="width:100%;padding:10px 14px;border:1px solid var(--color-border);border-radius:var(--radius-sm);">
+              </div>
+
+              <div style="margin-bottom:var(--spacing-md);">
+                <label style="display:block;font-size:var(--text-sm);font-weight:500;margin-bottom:4px;">Subject / Topic</label>
+                <select style="width:100%;padding:10px 14px;border:1px solid var(--color-border);border-radius:var(--radius-sm);background:var(--color-bg);">
+                  <option>General Question</option>
+                  <option>Treatment &amp; Procedure Consultation</option>
+                  <option>Pricing &amp; Financing Options</option>
+                  <option>Post-Treatment Care Support</option>
+                  <option>Medical Records / Superbill Request</option>
+                </select>
+              </div>
+
+              <div style="margin-bottom:var(--spacing-lg);">
+                <label style="display:block;font-size:var(--text-sm);font-weight:500;margin-bottom:4px;">Your Message *</label>
+                <textarea rows="5" required placeholder="How can our clinical team assist you today?" style="width:100%;padding:10px 14px;border:1px solid var(--color-border);border-radius:var(--radius-sm);"></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-lg" style="width:100%;">Send Message</button>
+
+              <div id="contact-success" style="display:none;margin-top:var(--spacing-md);padding:14px;background:rgba(184,148,95,0.12);border:1px solid var(--color-accent);border-radius:var(--radius-sm);color:var(--color-primary);font-size:var(--text-sm);text-align:center;">
+                <strong>Thank you!</strong> Your message has been sent. A patient coordinator will contact you shortly.
+              </div>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a href="index.html" class="header__logo">
+            <div class="header__logo-icon">
+              <svg width="32" height="32" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="#B8945F" stroke-width="1.5"/><path d="M20 8C14 14 14 26 20 32C26 26 26 14 20 8Z" fill="#B8945F" opacity="0.15" stroke="#B8945F" stroke-width="1"/><circle cx="20" cy="20" r="4" fill="#B8945F" opacity="0.3"/></svg>
+            </div>
+            <div>AURELIA<small>Dermatology &amp; Skin Clinic</small></div>
+          </a>
+          <p>Advanced dermatology and aesthetic care. Personalized treatments for healthier, beautiful skin.</p>
+        </div>
+        <div class="footer__col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="treatments.html">Treatments</a></li>
+            <li><a href="doctors.html">Doctors</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Treatments</h4>
+          <ul>
+            <li><a href="treatment-detail.html">Acne Treatment</a></li>
+            <li><a href="treatment-detail.html">Pigmentation</a></li>
+            <li><a href="treatment-detail.html">Laser Treatment</a></li>
+            <li><a href="treatment-detail.html">HydraFacial</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Contact</h4>
+          <ul>
+            <li>123 Wellness Avenue, Suite 200</li>
+            <li><a href="tel:+15551234567">(555) 123-4567</a></li>
+            <li><a href="mailto:hello@aureliaclinic.com">hello@aureliaclinic.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; 2026 Aurelia Dermatology &amp; Skin Clinic. All Rights Reserved.</p>
+        <div class="footer__bottom-links">
+          <a href="privacy-policy.html">Privacy Policy</a>
+          <a href="terms.html">Terms</a>
+          <a href="medical-disclaimer.html">Medical Disclaimer</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

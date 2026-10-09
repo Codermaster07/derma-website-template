@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pricing &amp; Packages | Aurelia Dermatology &amp; Skin Clinic</title>
+  <meta name="description" content="Transparent pricing for dermatology consultations, laser treatments, chemical peels, HydraFacials, and customized skin treatment packages.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Announcement Bar -->
+  <div class="announcement-bar">
+    <div class="container">
+      <div class="announcement-bar__left">
+        <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg> 123 Wellness Avenue, Suite 200</span>
+        <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg> (555) 123-4567</span>
+      </div>
+      <div class="announcement-bar__center">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg> 100% Upfront, Transparent Pricing &bull; No Hidden Clinic Fees
+      </div>
+      <div class="announcement-bar__right">
+        <a href="#" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+        <a href="#" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="container">
+      <a href="index.html" class="header__logo" aria-label="Aurelia Home">
+        <div class="header__logo-icon">
+          <svg width="32" height="32" viewBox="0 0 40 40" fill="none">
+            <circle cx="20" cy="20" r="18" stroke="#B8945F" stroke-width="1.5"/>
+            <path d="M20 8C14 14 14 26 20 32C26 26 26 14 20 8Z" fill="#B8945F" opacity="0.15" stroke="#B8945F" stroke-width="1"/>
+            <circle cx="20" cy="20" r="4" fill="#B8945F" opacity="0.3"/>
+          </svg>
+        </div>
+        <div>AURELIA<small>Dermatology &amp; Skin Clinic</small></div>
+      </a>
+      <nav class="header__nav" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="treatments.html">Treatments</a>
+        <a href="concerns.html">Concerns</a>
+        <a href="doctors.html">Doctors</a>
+        <a href="pricing.html" class="active">Pricing</a>
+        <a href="blog.html">Blog</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="header__actions">
+        <a href="book-appointment.html" class="btn btn-primary btn-sm">Book Appointment</a>
+        <button class="menu-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+  <div class="mobile-nav" id="mobile-nav">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="treatments.html">Treatments</a>
+    <a href="concerns.html">Concerns</a>
+    <a href="doctors.html">Doctors</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="blog.html">Blog</a>
+    <a href="contact.html">Contact</a>
+    <a href="book-appointment.html" class="btn btn-primary">Book Appointment</a>
+  </div>
+
+  <main>
+    <!-- Page Header -->
+    <section class="page-header">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><span>Pricing</span></nav>
+        <span class="eyebrow">Clear &amp; Transparent</span>
+        <h1>Treatment Pricing &amp;<br><span class="italic">Curated Packages.</span></h1>
+        <p>Honest medical pricing with no hidden charges. All packages include comprehensive aftercare and follow-up support.</p>
+      </div>
+    </section>
+
+    <!-- Pricing Tabs & List Section -->
+    <section class="section">
+      <div class="container">
+        
+        <!-- Filter Tabs -->
+        <div class="pricing-tabs">
+          <button class="pricing-tab active" data-category="all">All Treatments</button>
+          <button class="pricing-tab" data-category="consultations">Consultations</button>
+          <button class="pricing-tab" data-category="laser">Laser &amp; Light</button>
+          <button class="pricing-tab" data-category="facials">Facials &amp; Peels</button>
+          <button class="pricing-tab" data-category="injectables">Injectables &amp; Boosters</button>
+          <button class="pricing-tab" data-category="packages">Curated Packages</button>
+        </div>
+
+        <!-- Pricing Groups -->
+        <div class="pricing-list">
+
+          <!-- Consultations -->
+          <div class="pricing-group" data-category="consultations">
+            <h3 class="pricing-group__title">Dermatology Consultations</h3>
+            <div class="pricing-table">
+              <div class="pricing-row">
+                <div class="pricing-row__info">
+                  <div class="pricing-row__name">Initial Dermatologist Consultation &amp; Skin Scan</div>
+                  <div class="pricing-row__desc">45-minute comprehensive diagnosis, digital skin imaging, and personalized treatment roadmap.</div>
+                </div>
+                <div class="pricing-row__duration">45 mins</div>
+                <div class="pricing-row__price">$120</div>
+                <div class="pricing-row__action"><a href="book-appointment.html" class="btn btn-outline btn-sm">Book</a></div>
+              </div>
+              <div class="pricing-row">
+                <div class="pricing-row__info">
+                  <div class="pricing-row__name">Follow-up Review &amp; Progress Assessment</div>
+                  <div class="pricing-row__desc">25-minute evaluation of healing, medication adjustment, and photographic comparison.</div>
+                </div>
+                <div class="pricing-row__duration">25 mins</div>
+                <div class="pricing-row__price">$75</div>
+                <div class="pricing-row__action"><a href="book-appointment.html" class="btn btn-outline btn-sm">Book</a></div>
+              </div>
+              <div class="pricing-row">
+                <div class="pricing-row__info">
+                  <div class="pricing-row__name">Virtual Tele-Dermatology Consultation</div>
+                  <div class="pricing-row__desc">Secure 30-minute video appointment with prescription sending and treatment guide.</div>
+                </div>
+                <div class="pricing-row__duration">30 mins</div>
+                <div class="pricing-row__price">$95</div>
+                <div class="pricing-row__action"><a href="book-appointment.html" class="btn btn-outline btn-sm">Book</a></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Laser & Light -->
+          <div class="pricing-group" data-category="laser">
+            <h3 class="pricing-group__title">Laser &amp; Energy Treatments</h3>
+            <div class="pricing-table">
+              <div class="pricing-row">
+                <div class="pricing-row__info">
+                  <div class="pricing-row__name">Fractional CO2 Laser Resurfacing (Full Face)</div>
+                  <div class="pricing-row__desc">Advanced collagen remodeling for deep acne scars, texture irregularities, and fine lines.</div>
+                </div>
+                <div class="pricing-row__duration">60 mins</div>
+                <div class="pricing-row__price">$450 <span>/ session</span></div>
+                <div class="pricing-row__action"><a href="book-appointment.html" class="btn btn-outline btn-sm">Book</a></div>
+              </div>
+              <div class="pricing-row">
+                <div class="pricing-row__info">
+                  <div class="pricing-row__name">Q-Switched Nd:YAG Laser Toning (Pigmentation)</div>
+                  <div class="pricing-row__desc">Targeted photothermal breakdown of melanin clusters, melasma, and sunspots without peeling.</div>
+                </div>
+                <div class="pricing-row__duration">40 mins</div>
+                <div class="pricing-row__price">$280 <span>/ session</span></div>
+                <div class="pricing-row__action"><a href="book-appointment.html" class="btn btn-outline btn-sm">Book</a></div>
+              </div>
+              <div class="pricing-row">
+                <div class="pricing-row__info">
+                  <div class="pricing-row__name">IPL Photofacial (Vascular &amp; Redness)</div>
+                  <div class="pricing-row__desc">Calming therapy for broken capillaries, rosacea flare-ups, and generalized facial redness.</div>
+                </div>
+                <div class="pricing-row__duration">45 mins</div>
+                <div class="pricing-row__price">$260 <span>/ session</span></div>
+                <div class="pricing-row__action"><a href="book-appointment.html" class="btn btn-outline btn-sm">Book</a></div>
+              </div>
+              <div class="pricing-row">
+                <div class="pricing-row__info">
+                  <div class="pricing-row__name">Laser Hair Reduction (Full Face)</div>
+                  <div class="pricing-row__desc">Triple-wavelength medical diode laser for painless, long-lasting hair removal.</div>
+                </div>
+                <div class="pricing-row__duration">30 mins</div>
+                <div class="pricing-row__price">$180 <span>/ session</span></div>
+                <div class="pricing-row__action"><a href="book-appointment.html" class="btn btn-outline btn-sm">Book</a></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Facials & Peels -->
+          <div class="pricing-group" data-category="facials">
+            <h3 class="pricing-group__title">Medical Facials &amp; Peels</h3>
+            <div class="pricing-table">
+              <div class="pricing-row">
+                <div class="pricing-row__info">
+                  <div class="pricing-row__name">HydraFacial Deluxe (Extraction &amp; LED)</div>
+                  <div class="pricing-row__desc">4-step vortex deep pore cleanse, painless salicylic extraction, peptide infusion, and LED therapy.</div>
+                </div>
+                <div class="pricing-row__duration">50 mins</div>
+                <div class="pricing-row__price">$220 <span>/ session</span></div>
+                <div class="pricing-row__action"><a href="book-appointment.html" class="btn btn-outline btn-sm">Book</a></div>
+              </div>
+              <div class="pricing-row">
+                <div class="pricing-row__info">
+                  <div class="pricing-row__name">Aurelia Platinum Glow Facial</div>
+                  <div class="pricing-row__desc">Comprehensive lymphatic drainage, diamond dermabrasion, growth factor infusion, and cold globes.</div>
+                </div>
+                <div class="pricing-row__duration">75 mins</div>
+                <div class="pricing-row__price">$295 <span>/ session</span></div>
+                <div class="pricing-row__action"><a href="book-appointment.html" class="btn btn-outline btn-sm">Book</a></div>
+              </div>
+              <div class="pricing-row">
+                <div class="pricing-row__info">
+                  <div class="pricing-row__name">Custom Medical Chemical Peel</div>
+                  <div class="pricing-row__desc">Tailored AHA/BHA or TCA peel blend targeting active acne, dullness, or dark marks.</div>
+                </div>
+                <div class="pricing-row__duration">40 mins</div>
+                <div class="pricing-row__price">$190 <span>/ session</span></div>
+                <div class="pricing-row__action"><a href="book-appointment.html" class="btn btn-outline btn-sm">Book</a></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Injectables & Boosters -->
+          <div class="pricing-group" data-category="injectables">
+            <h3 class="pricing-group__title">Injectables &amp; Skin Boosters</h3>
+            <div class="pricing-table">
+              <div class="pricing-row">
+                <div class="pricing-row__info">
+                  <div class="pricing-row__name">Profhilo&reg; Bioremodeling (Full Face)</div>
+                  <div class="pricing-row__desc">High-concentration ultra-pure hyaluronic acid treatment stimulating 4 types of collagen &amp; elastin.</div>
+                </div>
+                <div class="pricing-row__duration">45 mins</div>
+                <div class="pricing-row__price">$550 <span>/ treatment</span></div>
+                <div class="pricing-row__action"><a href="book-appointment.html" class="btn btn-outline btn-sm">Book</a></div>
+              </div>
+              <div class="pricing-row">
+                <div class="pricing-row__info">
+                  <div class="pricing-row__name">Skin Booster Micro-Infusions (Hyaluronic + Polynucleotides)</div>
+                  <div class="pricing-row__desc">Targeted deep dermis hydration and cellular repair for tired, crepey skin texture.</div>
+                </div>
+                <div class="pricing-row__duration">50 mins</div>
+                <div class="pricing-row__price">$420 <span>/ session</span></div>
+                <div class="pricing-row__action"><a href="book-appointment.html" class="btn btn-outline btn-sm">Book</a></div>
+              </div>
+              <div class="pricing-row">
+                <div class="pricing-row__info">
+                  <div class="pricing-row__name">Anti-Wrinkle Micro-Tox (Per Area)</div>
+                  <div class="pricing-row__desc">Precision dosage administered exclusively by board-certified physicians for natural expression.</div>
+                </div>
+                <div class="pricing-row__duration">30 mins</div>
+                <div class="pricing-row__price">$220 <span>/ area</span></div>
+                <div class="pricing-row__action"><a href="book-appointment.html" class="btn btn-outline btn-sm">Book</a></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Curated Packages -->
+          <div class="pricing-group" data-category="packages">
+            <h3 class="pricing-group__title">Curated Transformation Packages</h3>
+            <div class="pricing-table">
+              <div class="pricing-row" style="background:var(--color-bg-card);border:1px solid var(--color-accent-light);border-radius:var(--radius-md);margin-bottom:var(--spacing-sm);padding:var(--spacing-md);">
+                <div class="pricing-row__info">
+                  <div class="pricing-row__name">Clear Skin Program (3 Months) <span class="tag" style="margin-left:8px;background:var(--color-accent);color:#fff;">Most Popular</span></div>
+                  <div class="pricing-row__desc">Includes 3x HydraFacials, 3x Chemical Peels, 2x Doctor Consults &amp; Complete Medical Homecare Kit.</div>
+                </div>
+                <div class="pricing-row__duration">3 Months</div>
+                <div class="pricing-row__price">$950 <span style="text-decoration:line-through;opacity:0.6;font-size:0.8em;">$1,250</span></div>
+                <div class="pricing-row__action"><a href="book-appointment.html" class="btn btn-primary btn-sm">Choose</a></div>
+              </div>
+              <div class="pricing-row" style="background:var(--color-bg-card);border:1px solid var(--color-accent-light);border-radius:var(--radius-md);margin-bottom:var(--spacing-sm);padding:var(--spacing-md);">
+                <div class="pricing-row__info">
+                  <div class="pricing-row__name">Pigment Correction Protocol (4 Sessions)</div>
+                  <div class="pricing-row__desc">Includes 4x Q-Switched Laser Toning, 2x Medical Brightening Peels, and Post-Procedure Serum.</div>
+                </div>
+                <div class="pricing-row__duration">4 Sessions</div>
+                <div class="pricing-row__price">$1,150 <span style="text-decoration:line-through;opacity:0.6;font-size:0.8em;">$1,500</span></div>
+                <div class="pricing-row__action"><a href="book-appointment.html" class="btn btn-primary btn-sm">Choose</a></div>
+              </div>
+              <div class="pricing-row" style="background:var(--color-bg-card);border:1px solid var(--color-accent-light);border-radius:var(--radius-md);padding:var(--spacing-md);">
+                <div class="pricing-row__info">
+                  <div class="pricing-row__name">Total Collagen Renewal (Full Protocol)</div>
+                  <div class="pricing-row__desc">Includes 2x Fractional Laser Sessions, 2x Profhilo Bioremodeling &amp; 3x LED Collagen Boosts.</div>
+                </div>
+                <div class="pricing-row__duration">12 Weeks</div>
+                <div class="pricing-row__price">$1,790 <span style="text-decoration:line-through;opacity:0.6;font-size:0.8em;">$2,300</span></div>
+                <div class="pricing-row__action"><a href="book-appointment.html" class="btn btn-primary btn-sm">Choose</a></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Pricing Policy / FAQs -->
+    <section class="section" style="background:var(--color-bg-alt);">
+      <div class="container">
+        <div class="section-header fade-up">
+          <span class="eyebrow">Financial Policies</span>
+          <h2>Frequently Asked <span class="italic">Pricing Questions.</span></h2>
+        </div>
+        <div class="faq-list fade-up" style="max-width:800px;margin:0 auto;">
+          <div class="faq-item">
+            <button class="faq-item__question" aria-expanded="false">
+              Is the consultation fee deductible from treatments?
+              <span class="faq-item__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+            </button>
+            <div class="faq-item__answer"><p>Yes, if you proceed with any treatment package or laser procedure of $300 or more on the same day or within 14 days of your consultation, $50 of your initial consultation fee is credited toward your procedure.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-item__question" aria-expanded="false">
+              Do you accept medical health insurance?
+              <span class="faq-item__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+            </button>
+            <div class="faq-item__answer"><p>Medical dermatology evaluations (such as skin cancer checks, severe inflammatory cystic conditions, and biopsies) may be eligible for out-of-network insurance reimbursement. We provide itemized superbills with ICD-10 and CPT codes for submission.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-item__question" aria-expanded="false">
+              Are interest-free payment plans available?
+              <span class="faq-item__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+            </button>
+            <div class="faq-item__answer"><p>Yes, we partner with CareCredit and Cherry to provide flexible 0% APR financing options over 3, 6, or 12 months on all treatment packages.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-banner">
+      <div class="container fade-up">
+        <span class="eyebrow" style="color:var(--color-accent-light);">Customized Quote</span>
+        <h2>Need Guidance on the Right<br><span class="italic">Plan for Your Skin?</span></h2>
+        <p>Book an in-depth consultation. Our doctors will assess your skin and recommend only what's necessary.</p>
+        <a href="book-appointment.html" class="btn btn-primary btn-lg">Schedule Consultation</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a href="index.html" class="header__logo">
+            <div class="header__logo-icon">
+              <svg width="32" height="32" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="#B8945F" stroke-width="1.5"/><path d="M20 8C14 14 14 26 20 32C26 26 26 14 20 8Z" fill="#B8945F" opacity="0.15" stroke="#B8945F" stroke-width="1"/><circle cx="20" cy="20" r="4" fill="#B8945F" opacity="0.3"/></svg>
+            </div>
+            <div>AURELIA<small>Dermatology &amp; Skin Clinic</small></div>
+          </a>
+          <p>Advanced dermatology and aesthetic care. Personalized treatments for healthier, beautiful skin.</p>
+        </div>
+        <div class="footer__col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="treatments.html">Treatments</a></li>
+            <li><a href="concerns.html">Concerns</a></li>
+            <li><a href="doctors.html">Doctors</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Treatments</h4>
+          <ul>
+            <li><a href="treatment-detail.html">Acne Treatment</a></li>
+            <li><a href="treatment-detail.html">Pigmentation</a></li>
+            <li><a href="treatment-detail.html">Laser Treatment</a></li>
+            <li><a href="treatment-detail.html">HydraFacial</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Contact</h4>
+          <ul>
+            <li>123 Wellness Avenue, Suite 200</li>
+            <li><a href="tel:+15551234567">(555) 123-4567</a></li>
+            <li><a href="mailto:hello@aureliaclinic.com">hello@aureliaclinic.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; 2026 Aurelia Dermatology &amp; Skin Clinic. All Rights Reserved.</p>
+        <div class="footer__bottom-links">
+          <a href="privacy-policy.html">Privacy Policy</a>
+          <a href="terms.html">Terms</a>
+          <a href="medical-disclaimer.html">Medical Disclaimer</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
